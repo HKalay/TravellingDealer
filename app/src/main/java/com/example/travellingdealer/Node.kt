@@ -1,15 +1,18 @@
 package com.example.travellingdealer
 
-class Node(var data: Int) {
+class Node(var x: Int, var y: Int) {
 
     var following: Node? = null
 
-    fun appendToEnd(data: Int) {
-        val end = Node(data)
+    fun appendToEnd(x: Int, y: Int) {
+        val end = Node(x = x, y = y)
+
         var n: Node? = this
+
         while (n!!.following != null) {
             n = n.following
         }
+
         n.following = end
     }
 
@@ -27,10 +30,10 @@ class Node(var data: Int) {
         return 0
     }
 
-    fun deleteNode(head: Node, data: Int): Node? {
+    fun deleteNode(head: Node, x: Int, y: Int): Node? {
         val n: Node = head
 
-        if(n.data == data) {
+        if (n.x == x && n.y == y) {
             return head.following
         }
         // TODO:: Implement the proper loop in order to remove given data
