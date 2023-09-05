@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        node = Node(3, 7)
-        nodeList.add(Node(3, 7))
+        node = Node(x = 3, y = 7)
+        nodeList.add(Node(x = 3, y = 7))
         node?.distance = 0.0
     }
 
@@ -50,24 +50,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addCustomerLocation() {
-        node?.appendToEnd(1, 4)
-        node?.appendToEnd(1, 10)
-        node?.appendToEnd(2, 1)
-        node?.appendToEnd(5, 2)
-        node?.appendToEnd(6, 5)
-        node?.appendToEnd(8, 4)
-        node?.appendToEnd(8, 9)
-        node?.appendToEnd(9, 2)
+        node?.appendToEnd(x = 1, y = 4)
+        node?.appendToEnd(x = 1, y = 10)
+        node?.appendToEnd(x = 2, y = 1)
+        node?.appendToEnd(x = 5, y = 2)
+        node?.appendToEnd(x = 6, y = 5)
+        node?.appendToEnd(x = 8, y = 4)
+        node?.appendToEnd(x = 8, y = 9)
+        node?.appendToEnd(x = 9, y = 2)
 
 
-        nodeList.add(Node(1, 4))
-        nodeList.add(Node(1, 10))
-        nodeList.add(Node(2, 1))
-        nodeList.add(Node(5, 2))
-        nodeList.add(Node(6, 5))
-        nodeList.add(Node(8, 4))
-        nodeList.add(Node(8, 9))
-        nodeList.add(Node(9, 2))
+        nodeList.add(Node(x = 1, y = 4))
+        nodeList.add(Node(x = 1, y = 10))
+        nodeList.add(Node(x = 2, y = 1))
+        nodeList.add(Node(x = 5, y = 2))
+        nodeList.add(Node(x = 6, y = 5))
+        nodeList.add(Node(x = 8, y = 4))
+        nodeList.add(Node(x = 8, y = 9))
+        nodeList.add(Node(x = 9, y = 2))
 
         showAlertDialog(title = "Message", message = "Customer locations added")
     }

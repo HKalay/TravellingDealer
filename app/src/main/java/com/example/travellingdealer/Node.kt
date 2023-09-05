@@ -13,80 +13,76 @@ class Node(var x: Int, var y: Int) {
         //Bulunduğum konumdan (x,y) - hedeflediğimiz konumu çıkartıyoruz. (x,y).
         //Çıkan x ve y değerlerinin toplamlarının karakökü alınır. Kök dışarı çıkartılır ve mesafe bulunur.
 
-        val end = Node(x = x, y = y)
-        var n: Node? = this
+        var currentNode: Node? = this
+        val newNode = Node(x = x, y = y)
 
-        val xvalue = (n!!.x - x).toDouble().pow(2)
-        val yValue = (n.y - y).toDouble().pow(2)
-        end.distance = sqrt((xvalue + yValue))
+        val xvalue = (currentNode!!.x - x).toDouble().pow(2)
+        val yValue = (currentNode.y - y).toDouble().pow(2)
+        newNode.distance = sqrt((xvalue + yValue))
 
-        while (n!!.following != null) {
-            n = n.following
+        while (currentNode!!.following != null) {
+            currentNode = currentNode.following
         }
-        n.following = end
+
+        //Düğümün sonuna geldiğinde son node un followingine eklenir.
+
+        currentNode.following = newNode
     }
 
     fun printNodes(): String {
 
         var nodesData = "Factory(3, 7)"
 
-        val node = this
+        val currentNode = this
 
-        var n: Node? = node.following
-        while (n != null) {
-            val stringPath = String.format("%.2f", n.distance)
+        var nextNode: Node? = currentNode.following
+        while (nextNode != null) {
+            val stringPath = String.format("%.2f", nextNode.distance)
             nodesData =
-                "$nodesData\nCustomer(${n.x}, ${n.y}) - $stringPath"
-            n = n.following
+                "$nodesData\nCustomer(${nextNode.x}, ${nextNode.y}) - $stringPath"
+            nextNode = nextNode.following //Düğümün sonuna geldiğinde, en son datadan sonra bir yeni data olmayınca null atanır.
         }
         return nodesData
     }
 
     fun length(): Int {
-
         var length = 0
-        var n: Node? = this
-        while (n != null) {
+        var currentNode: Node? = this
+        while (currentNode != null) {
             length++
-            n = n.following
+            currentNode = currentNode.following //Düğümün sonuna geldiğinde, en son datadan sonra bir yeni data olmayınca null atanır.
         }
         return length
     }
 
     fun sumOfNodes(): Double {
-
         var distance = 0.0
-
-        val node = this
-
-        var n: Node? = node
-        while (n != null) {
-            distance += n.distance!!
-            n = n.following
+        var currentNode: Node? = this
+        while (currentNode != null) {
+            distance += currentNode.distance!!
+            currentNode = currentNode.following //Düğümün sonuna geldiğinde, en son datadan sonra bir yeni data olmayınca null atanır.
         }
         return distance
     }
 
     fun deleteNode(x: Int, y: Int): String {
+        var currentNode: Node? = this
 
-        val node = this
-
-        var n: Node? = node
         var prevNode: Node? = null
 
-        if (n != null && n.x == x && n.y == y) {
+        if (currentNode != null && currentNode.x == x && currentNode.y == y) {
             return "You can't delete the factory"
         }
 
-        while (n != null && !(n.x == x && n.y == y)) {
-            prevNode = n
-            n = n.following
+        while (currentNode != null && !(currentNode.x == x && currentNode.y == y)) {
+            prevNode = currentNode
+            currentNode = currentNode.following
         }
 
-        if (n == null)
+        if (currentNode == null)
             return "($x, $y) not found"
 
-        prevNode?.following = n.following
+        prevNode?.following = currentNode.following // Silinen node un öncesi, siline node un sonrasına bağlandı.
         return "($x, $y) deleted"
     }
 }
