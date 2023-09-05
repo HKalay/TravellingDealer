@@ -13,7 +13,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        init()
+        initClickListener()
+    }
 
+    private fun init() {
+        node = Node(3, 7)
+        nodeList.add(Node(3, 7))
+        node?.distance = 0.0
+    }
+
+    private fun initClickListener() {
         btnAddCustomerLocation.setOnClickListener {
             addCustomerLocation()
         }
@@ -32,21 +42,11 @@ class MainActivity : AppCompatActivity() {
 
         btnDeleteLocation.setOnClickListener {
             nodeList.shuffle()
-            showAlertDialog(title = "Delete Location Info",message= node?.deleteNode(x = nodeList[0].x, y = nodeList[0].y))
+            showAlertDialog(
+                title = "Delete Location Info",
+                message = node?.deleteNode(x = nodeList[0].x, y = nodeList[0].y)
+            )
         }
-
-        node = Node(3, 7)
-        nodeList.add(Node(3, 7))
-        node?.distance = 0.0
-    }
-
-    private fun calculateDistance() {
-        val distance = node?.sumOfNodes()
-        val stringTotalDistance = String.format("%.5f", distance?.times(2))
-        showAlertDialog(
-            title = "Total Distance",
-            message = "Distance: $stringTotalDistance"
-        )
     }
 
     private fun addCustomerLocation() {
@@ -70,6 +70,15 @@ class MainActivity : AppCompatActivity() {
         nodeList.add(Node(9, 2))
 
         showAlertDialog(title = "Message", message = "Customer locations added")
+    }
+
+    private fun calculateDistance() {
+        val distance = node?.sumOfNodes()
+        val stringTotalDistance = String.format("%.5f", distance?.times(2))
+        showAlertDialog(
+            title = "Total Distance",
+            message = "Distance: $stringTotalDistance"
+        )
     }
 
     private fun showAlertDialog(message: String?, title: String?) {

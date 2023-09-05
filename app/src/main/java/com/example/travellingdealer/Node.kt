@@ -26,8 +26,6 @@ class Node(var x: Int, var y: Int) {
         n.following = end
     }
 
-    // TODO:: Implement to return the length of the SinglyLinkedList
-    // For example:: --> 5 --> 6 --> 7 --> 3 --> .
     fun printNodes(): String {
 
         var nodesData = "Factory(3, 7)"
@@ -47,10 +45,10 @@ class Node(var x: Int, var y: Int) {
     fun length(): Int {
 
         var length = 0
-        var tempNode: Node? = this
-        while (tempNode != null) {
+        var n: Node? = this
+        while (n != null) {
             length++
-            tempNode = tempNode.following
+            n = n.following
         }
         return length
     }
@@ -73,22 +71,22 @@ class Node(var x: Int, var y: Int) {
 
         val node = this
 
-        var tempNode: Node? = node
+        var n: Node? = node
         var prevNode: Node? = null
 
-        if (tempNode != null && tempNode.x == x && tempNode.y == y) {
+        if (n != null && n.x == x && n.y == y) {
             return "You can't delete the factory"
         }
 
-        while (tempNode != null && !(tempNode.x == x && tempNode.y == y)) {
-            prevNode = tempNode
-            tempNode = tempNode.following
+        while (n != null && !(n.x == x && n.y == y)) {
+            prevNode = n
+            n = n.following
         }
 
-        if (tempNode == null)
+        if (n == null)
             return "($x, $y) not found"
 
-        prevNode?.following = tempNode.following
+        prevNode?.following = n.following
         return "($x, $y) deleted"
     }
 }
