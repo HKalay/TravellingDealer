@@ -71,7 +71,7 @@ class Node(var x: Int, var y: Int) {
         var prevNode: Node? = null
 
         if (currentNode != null && currentNode.x == x && currentNode.y == y) {
-            return "You can't delete the factory"
+            return "Factory position cannot be deleted"
         }
 
         while (currentNode != null && !(currentNode.x == x && currentNode.y == y)) {
@@ -80,7 +80,7 @@ class Node(var x: Int, var y: Int) {
         }
 
         if (currentNode == null)
-            return "($x, $y) not found"
+            return "($x, $y) previously deleted"
 
         prevNode?.following = currentNode.following // Silinen node un öncesi, siline node un sonrasına bağlandı.
         return "($x, $y) deleted"

@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun calculateDistance() {
         val distance = node?.sumOfNodes()
-        val stringTotalDistance = String.format("%.5f", distance?.times(2))
+        val stringTotalDistance = String.format("%.2f", distance?.times(2))
         showAlertDialog(
             title = "Total Distance",
             message = "Distance: $stringTotalDistance"
